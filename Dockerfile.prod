@@ -1,0 +1,14 @@
+# Base leve e estável do NGINX
+FROM nginx:1.25-alpine
+
+# Remove o default config do NGINX (boa prática)
+RUN rm /etc/nginx/conf.d/default.conf
+
+# Copia seu arquivo customizado de produção para dentro do container
+COPY prod/default.conf /etc/nginx/conf.d/default.conf
+
+# (Opcional) Copia nginx.conf base se estiver usando
+# COPY prod/nginx.conf /etc/nginx/nginx.conf
+
+# Exposição da porta padrão
+EXPOSE 80
