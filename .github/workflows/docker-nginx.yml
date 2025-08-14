@@ -1,12 +1,14 @@
-name: Build & Push - NGINX
+name: Build & Push - AppGestaoTI NGINX
 
 on:
   push:
     branches: ["main"]
     paths:
-      - "appgestaoti-Nginx/Dockerfile"
-      - "appgestaoti-Nginx/prod/default.conf"
       - ".github/workflows/docker-nginx.yml"
+      - "Dockerfile"
+      - "Dockerfile.prod"
+      - "prod/**"
+      - "dev-container/**"
 
 jobs:
   build:
@@ -17,20 +19,20 @@ jobs:
       packages: write
 
     steps:
-      - name: Checkout
+      - name: Checkout do repositório
         uses: actions/checkout@v4
 
-      - name: Login GHCR
+      - name: Login no GitHub Container Registry (GHCR)
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GHCR_PAT }}
 
-      - name: Build & Push image
+      - name: Build e Push da imagem NGINX
         uses: docker/build-push-action@v5
         with:
-          context: ./nginx
-          file: ./nginx/Dockerfile
+          context: .
+          file: ./Dockerfile
           push: true
           tags: ghcr.io/devrafaelrabelo/appgestaoti-nginx:latest
