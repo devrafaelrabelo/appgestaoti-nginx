@@ -33,6 +33,6 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
-          file: ./Dockerfile
+          file: ./Dockerfile.prod
           push: true
           tags: ghcr.io/devrafaelrabelo/appgestaoti-nginx:latest
