@@ -4,8 +4,8 @@ on:
   push:
     branches: ["main"]
     paths:
-      - "nginx/Dockerfile"
-      - "nginx/prod/default.conf"
+      - "appgestaoti-Nginx/Dockerfile"
+      - "appgestaoti-Nginx/prod/default.conf"
       - ".github/workflows/docker-nginx.yml"
 
 jobs:
